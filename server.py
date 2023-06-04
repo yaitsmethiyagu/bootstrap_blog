@@ -1,5 +1,5 @@
 import blog
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import requests
 
 app = Flask(__name__)
@@ -28,9 +28,14 @@ def home():
 def about():
     return render_template("about.html")
 
-@app.route("/contact")
+@app.route("/contact",  methods = ["GET", "POST"])
 def contact():
-    return render_template("contact.html")
+    if request.method == "GET":
+        return render_template("contact.html")
+    elif request.method == "POST":
+        name = request.form["name"]
+        return f"<h1>Thankyou {name}<h1> <h3>Form submitted successfully<h3>"
+
 
 @app.route("/post")
 def post():
