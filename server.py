@@ -34,6 +34,8 @@ def contact():
         return render_template("contact.html")
     elif request.method == "POST":
         name = request.form["name"]
+        return render_template("contact.html", form_sender = name)
+
         return f"<h1>Thankyou {name}<h1> <h3>Form submitted successfully<h3>"
 
 
